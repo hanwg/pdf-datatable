@@ -1,0 +1,56 @@
+body {
+  font-family: 'Inter', sans-serif;
+}
+#drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+  background-color: #f8f9fa;
+  transition: border-color 0.3s ease;
+}
+#drop-area:hover,
+#drop-area.active {
+  border-color: #007bff;
+  background-color: #e9ecef;
+}
+#file-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+#file-list li {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+}
+#file-list li span {
+  margin-right: 10px;
+  word-break: break-all;
+}
+#file-list li button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#file-list li button:hover {
+  background-color: #c82333;
+}
+.hidden {
+  display: none;
+}
+#upload-button {
+  margin-top: 20px;
+}
