@@ -1,3 +1,9 @@
+#pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
      font-family: 'Inter', sans-serif;
 }

@@ -75,7 +75,7 @@ async function exampleUsage() {
 }
 
 async function render(page) {
-    const scale = 1.5;
+    const scale = window.devicePixelRatio || 1;
     const viewport = page.getViewport({ scale });
 
     const container = document.getElementById("pageContainer");
