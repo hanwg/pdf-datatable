@@ -13,7 +13,7 @@ async function readTextFromPdf(source) {
         });
 
         const pdfDocument = await loadingTask.promise;
-        let textContent = '';
+        let lines = [];
 
         // save in global
         window.pdf = {
@@ -29,28 +29,42 @@ async function readTextFromPdf(source) {
 
             window.pdf.pages.push(page);
             if (pageNum == 1) {
-                document.getElementById("pageContainer").style.boxShadow = '0 4px 6px #77777736';
+                document.getElementById("pageContainer").style.border = 'solid 1px #ccc';
 
-                render(page);
+                await render(page);
+
+                var elements = document.getElementsByClassName("role");
+                for (var i = 0; i < elements.length; i++) {
+                    var attribute = elements[i].getAttribute("role");
+                    //TODO
+                    //elements[i].addEventListener('click', myFunction, false);
+                }
 
                 // TODO refactor this
                 document.getElementById("selectPdf").style.display = 'none';
                 document.getElementById("selectHeaders").style.display = 'block';
-
             }
 
             // Concatenate the text from each item in the text layer.
+            let line = '';
+            let xTranslation = 0;
             for (const item of textLayer.items) {
-                // TODO
-                // (item.transform[4] > ... ? '\n' : ' '
-                textContent += item.str + ' '; // Add a space between text items.
+                if (item.transform[4] >= xTranslation) {
+                    xTranslation = item.transform[4];
+                    line = line + item.str + '|';
+                } else {
+                    // new line
+                    line = line.substring(0, line.length - 1); // remove the extra space we added earlier
+                    lines.push(line);
+                    line = item.str;
+                    xTranslation = item.transform[4];
+                }
             }
-            textContent += '\n'; // Add a newline after each page's text, for readability
             await page.cleanup(); //release page resources
         }
 // TODO await pdfDocument.cleanup(); //release document resources
 
-        return textContent;
+        return lines;
     } catch (error) {
         console.error('Error reading PDF:', error);
         throw error; // Re-throw the error to be caught by the caller.
@@ -65,8 +79,11 @@ async function exampleUsage() {
         const file = event.target.files[0];
         if (file) {
             try {
-                const text = await readTextFromPdf(file);
-                console.log('Text from file:', text);
+                const lines = await readTextFromPdf(file);
+                for (const line of lines) {
+                    console.log(line);
+                }
+                //console.log('Text from file:', text);
             } catch (err) {
                 console.error('Failed to extract text from file', err);
             }

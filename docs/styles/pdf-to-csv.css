@@ -1,9 +1,22 @@
+/* pdf preview pane */
 #pageContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* text element within the pdf */
+span[role="presentation"]:hover {
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    border: 1px solid darkgrey;
+    cursor: pointer;
+}
+span[selected="true"] {
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    border: 1px solid darkgrey;
+}
+
+/* file selector */
 body {
      font-family: 'Inter', sans-serif;
 }
