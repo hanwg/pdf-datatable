@@ -43,13 +43,11 @@ jobs:
 
       - name: Run Build
         run: npm run build
-        env:
-          PUBLIC_URL: https://pdf-to-csv.hanwg.top
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./docs
 
   # Deployment job
   deploy:
