@@ -1,2 +1,5 @@
+# this is the output of `npm run build`
+docs
+
 node_modules
 package-lock.json
