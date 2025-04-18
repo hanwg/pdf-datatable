@@ -1,22 +1,13 @@
 /* pdf preview pane */
+
 #pageContainer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* text element within the pdf */
-span[role="presentation"]:hover {
-    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-    border: 1px solid darkgrey;
-    cursor: pointer;
-}
-span[selected="true"] {
-    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-    border: 1px solid darkgrey;
-}
+/* UploadPdf */
 
-/* file selector */
 #drop-area {
     border: 2px dashed #ccc;
     border-radius: 10px;
@@ -32,45 +23,17 @@ span[selected="true"] {
     background-color: #e9ecef;
 }
 
+/* SelectCsvElement */
 
-
-
-
-#file-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
+span[role="presentation"]:hover {
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    border: 1px solid darkgrey;
+    cursor: pointer;
 }
- #file-list li {
-     background-color: #fff;
-     padding: 10px;
-     border-radius: 5px;
-     margin-bottom: 5px;
-     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     border: 1px solid #ddd;
+span[selected="true"] {
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    border: 1px solid darkgrey;
 }
- #file-list li span {
-     margin-right: 10px;
-     word-break: break-all;
-}
- #file-list li button {
-     background-color: #dc3545;
-     color: white;
-     border: none;
-     padding: 5px 10px;
-     border-radius: 3px;
-     cursor: pointer;
-     transition: background-color 0.3s ease;
-}
- #file-list li button:hover {
-     background-color: #c82333;
-}
-
-
-
 
 #upload-button {
     margin-top: 20px;
