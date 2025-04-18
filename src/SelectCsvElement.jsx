@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { pdfjs, Document, Page, Outline } from 'react-pdf';
+import { pdfjs, Document, Page } from 'react-pdf';
 
 import "./styles.css";
 import 'react-pdf/dist/Page/TextLayer.css';
