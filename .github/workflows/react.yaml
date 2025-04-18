@@ -38,17 +38,13 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Set env
-        run: echo "PUBLIC_URL=https://pdf-to-csv.hanwg.top" >> $GITHUB_ENV
-
       - name: Install dependencies
         run: npm install
 
       - name: Run Build
         run: npm run build
-
-      - name: Copy CNAME
-        run: cp ./CNAME ./docs
+        env:
+          PUBLIC_URL: https://pdf-to-csv.hanwg.top
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
