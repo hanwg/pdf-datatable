@@ -17,7 +17,7 @@ async function readTextFromPdf(source) {
 
         // save in global
         window.pdf = {
-            pdf: pdfDocument,
+            doc: pdfDocument,
             pages: [],
             numPages: pdfDocument.numPages
         };
@@ -46,20 +46,19 @@ async function readTextFromPdf(source) {
             }
 
             // Concatenate the text from each item in the text layer.
-            let line = '';
+            let line = [];
             let xTranslation = 0;
             for (const item of textLayer.items) {
                 if (item.transform[4] >= xTranslation) {
                     xTranslation = item.transform[4];
-                    line = line + item.str + '|';
+                    line.push(item);
                 } else {
                     // new line
-                    line = line.substring(0, line.length - 1); // remove the extra space we added earlier
                     lines.push(line);
-                    line = item.str;
+                    line = [];
                     xTranslation = item.transform[4];
                 }
-            }
+            }debugger
             await page.cleanup(); //release page resources
         }
 // TODO await pdfDocument.cleanup(); //release document resources
@@ -81,7 +80,11 @@ async function exampleUsage() {
             try {
                 const lines = await readTextFromPdf(file);
                 for (const line of lines) {
-                    console.log(line);
+                    var str = '';
+                    for (const textElement of line) {
+                        str = str + textElement.str + '|';
+                    }
+                    console.log(str);
                 }
                 //console.log('Text from file:', text);
             } catch (err) {
@@ -92,8 +95,8 @@ async function exampleUsage() {
 }
 
 async function render(page) {
-    const scale = window.devicePixelRatio || 1;
-    const viewport = page.getViewport({ scale });
+    const scale = 1;
+    const viewport = page.getViewport({ scale: scale });
 
     const container = document.getElementById("pageContainer");
     const eventBus = new pdfjsViewer.EventBus();
@@ -102,7 +105,7 @@ async function render(page) {
         id: 1, //TODO page number
         scale: scale,
         defaultViewport: viewport,
-    eventBus,
+        eventBus
     });
 
     // Associate the actual page with the view, and draw it.
