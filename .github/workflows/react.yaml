@@ -38,6 +38,9 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Set env
+        run: echo "PUBLIC_URL=https://pdf-to-csv.hanwg.top" >> $GITHUB_ENV
+
       - name: Install dependencies
         run: npm install
 
