@@ -15,7 +15,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 export default function SelectCsvHeaders({ files }) {
 
     const [numPages, setNumPages] = useState(0);
-    const [headers, setHeaders] = useState([]);
 
     let pagesRendered = 0;
 
