@@ -15,10 +15,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 export default function SelectCsvElement({ files }) {
 
     const [page, setPage] = useState();
+    const [lines, setLines] = useState([]);
 
     useEffect(() => {
          async function parsePageText() {
-             debugger
              const textLayer = await page.getTextContent();
 
              let lines = [];
@@ -35,6 +35,8 @@ export default function SelectCsvElement({ files }) {
                      xTranslation = item.transform[4];
                  }
              }
+
+             setLines(lines);
          }
 
         if (page) {
@@ -50,6 +52,14 @@ export default function SelectCsvElement({ files }) {
         const textElements = document.querySelectorAll('span[role="presentation"]');
         for (const textElement of textElements) {
             textElement.addEventListener('click', (event) => {
+                // clear previous selection
+                for (const textElement of textElements) {
+                    textElement.removeAttribute("selected");
+                }
+
+                // highlight current selection
+                event.target.setAttribute("selected", "true");
+
                 // TODO event.target.textContent;
             });
         }
@@ -62,9 +72,15 @@ export default function SelectCsvElement({ files }) {
                 Any content before the selected element will not be included in the CSV.
             </div>
 
-            <Document file={files[0]}>
-                <Page pageNumber={1} onRenderTextLayerSuccess={onTextLayerRender} onLoadSuccess={onPageLoad}/>
-            </Document>
+            <div className="text-end">
+                <button type="button" class="btn btn-primary" disabled>Primary</button>
+            </div>
+
+            <div className="mt-3">
+                <Document file={files[0]} className="pdf">
+                    <Page pageNumber={1} onRenderTextLayerSuccess={onTextLayerRender} onLoadSuccess={onPageLoad}/>
+                </Document>
+            </div>
         </>
     );
 }

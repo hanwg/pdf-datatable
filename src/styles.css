@@ -32,6 +32,10 @@ span[role="presentation"]:hover {
 }
 span[selected="true"] {
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    border: 2px solid red !important;
+}
+
+.pdf {
     border: 1px solid darkgrey;
 }
 
