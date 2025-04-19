@@ -23,7 +23,7 @@
     background-color: #e9ecef;
 }
 
-/* SelectCsvElement */
+/* SelectCsvHeaders */
 
 span[role="presentation"]:hover {
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
@@ -34,8 +34,12 @@ span[selected="true"] {
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     border: 2px solid red !important;
 }
+span[excluded="true"] {
+    background-color: lightgray;
+    opacity: 0.75;
+}
 
-.pdf {
+.pdfPage > .textLayer {
     border: 1px solid darkgrey;
 }
 

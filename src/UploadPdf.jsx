@@ -29,7 +29,7 @@ export default function UploadPdf({ setActiveStep, setFiles }) {
 
     function handleFiles(files) {
         setFiles(files);
-        setActiveStep('SelectCsvElement');
+        setActiveStep('SelectCsvHeaders');
     }
 
     return (

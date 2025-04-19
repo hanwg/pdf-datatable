@@ -2,7 +2,8 @@ import { useState } from "react";
 import "./styles.css";
 
 import UploadPdf from "./UploadPdf";
-import SelectCsvElement from "./SelectCsvElement";
+import SelectCsvHeaders from "./SelectCsvHeaders";
+import CsvTransform from "./CsvTransform";
 
 export default function Body() {
 
@@ -19,8 +20,12 @@ export default function Body() {
                 <UploadPdf setActiveStep={setActiveStep} setFiles={setFiles} />
             </div>
 
-            <div className={activeStep === 'SelectCsvElement' ? 'container my-5' : 'hidden'}>
-                <SelectCsvElement setActiveStep={setActiveStep} files={files} />
+            <div className={activeStep === 'SelectCsvHeaders' ? 'container my-5' : 'hidden'}>
+                <SelectCsvHeaders setActiveStep={setActiveStep} files={files} />
+            </div>
+
+            <div className={activeStep === 'CsvTransform' ? 'container my-5' : 'hidden'}>
+                <CsvTransform setActiveStep={setActiveStep} files={files} />
             </div>
         </>
     );
