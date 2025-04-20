@@ -37,7 +37,7 @@ export default function Home() {
                             <h5>🌐 Free and Open Source Software (FOSS)</h5>
                         </div>
                         <div className="card-title">
-                            <p>PDF Tables is free to use!</p>
+                            <p>PDF Tables is free to use! Interested in self-hosting? Check out the GitHub repository.</p>
                         </div>
                     </div>
 
