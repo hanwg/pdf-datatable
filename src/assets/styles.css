@@ -20,7 +20,7 @@
 }
 #drop-area:hover, #drop-area.active {
     border-color: #007bff;
-    background-color: #e9ecef;
+    background-color: #d5d8dc;
 }
 
 /* SelectCsvHeaders */
@@ -48,6 +48,32 @@ span[excluded="true"] {
 }
 
 /* general classes */
+
+body {
+    background-color: #eaecee;
+}
+
+.footer {
+    color: white;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+}
+
+.home {
+    font-weight: bolder;
+}
+
+.logo {
+    height: 23px;
+}
+
+.alert {
+    font-weight: bold;
+}
+
 .hidden {
     display: none;
 }

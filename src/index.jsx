@@ -2,8 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from 'react-router-dom';
 
-import Nav from "./Nav";
-import PdfTables from "./pdftables/PdfTables";
+import App from './App';
 
 import "./assets/styles.css";
 
@@ -13,8 +12,7 @@ const root = createRoot(rootElement);
 root.render(
     <StrictMode>
         <BrowserRouter>
-            <Nav />
-            <PdfTables />
+            <App />
         </BrowserRouter>
     </StrictMode>
 );

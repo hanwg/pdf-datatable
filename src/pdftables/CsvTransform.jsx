@@ -8,37 +8,53 @@ export default function CsvTransform({ setActiveStep }) {
         );
     }
 
+    function nextButtonClicked() {
+        // TODO
+        alert('Coming soon')
+    }
+
     return (
         <>
-            <table className="table table-striped">
+            <div className="container my-5">
 
-                <thead>
-                    <tr>
-                        {
-                            csvLines[0].map((column) => (
-                                <th>{ column }</th>
-                            ))
-                        }
-                    </tr>
-                </thead>
+                <div className="alert alert-info" role="alert">
+                    Works in progress
+                </div>
 
-                <tbody>
-                {
-                    csvLines.splice(1).map(function(csvLine) {
-                        return (
-                            <tr>
-                                {
-                                    csvLine.map((column) => (
-                                        <td>{ column }</td>
-                                    ))
-                                }
-                            </tr>
-                        )
-                    })
-                }
-                </tbody>
+                <div className="text-end my-3">
+                    <button type="button" className="btn btn-primary" onClick={nextButtonClicked}>Download CSV</button>
+                </div>
 
-            </table>
+                <table className="table table-striped">
+
+                    <thead>
+                        <tr>
+                            {
+                                csvLines[0].map((column) => (
+                                    <th>{ column }</th>
+                                ))
+                            }
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {
+                        csvLines.splice(1).map(function(csvLine) {
+                            return (
+                                <tr>
+                                    {
+                                        csvLine.map((column) => (
+                                            <td>{ column }</td>
+                                        ))
+                                    }
+                                </tr>
+                            )
+                        })
+                    }
+                    </tbody>
+
+                </table>
+            </div>
         </>
     );
 }

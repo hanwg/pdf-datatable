@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
 
+import pdfIcon from '../assets/pdf-icon.png';
+
 // event.preventDefault() is used to prevent browser from navigating away when user drops a file
-export default function UploadPdf({ setActiveStep, setFiles }) {
+export default function SelectPdf({ setActiveStep, setFiles }) {
 
     const fileInput = useRef();
     const [isDropActive, setIsDropActive] = useState(false);
@@ -47,11 +49,10 @@ export default function UploadPdf({ setActiveStep, setFiles }) {
                         onDragLeave={dropAreaInactive}
                         onClick={handleDropAreaClicked}>
 
-                        <p>Drag and drop files here, or click to select files</p>
+                        <p className="icon-link"><img src={pdfIcon} alt="PDF icon" className="logo" /> Drag and drop files here, or click to select files</p>
+                        <p>(Files are never uploaded to the server and will only remain in your device)</p>
                         <input type="file" id="file-input" multiple className="hidden" ref={fileInput} accept=".pdf" onChange={(event) => handleFiles(event.target.files)} />
                     </div>
-
-                    <button id="upload-button" type="button" className="btn btn-primary hidden">Upload Files</button>
                 </div>
             </div>
         </>
