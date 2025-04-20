@@ -1,11 +1,10 @@
 import { useState } from "react";
-import "./styles.css";
 
 import UploadPdf from "./UploadPdf";
 import SelectCsvHeaders from "./SelectCsvHeaders";
 import CsvTransform from "./CsvTransform";
 
-export default function Body() {
+export default function PdfTables() {
 
     const [activeStep, setActiveStep] = useState('UploadPdf');
     const [files, setFiles] = useState([]);

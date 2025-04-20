@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { pdfjs, Document, Page } from 'react-pdf';
 
-import "./styles.css";
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
@@ -12,7 +11,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 
 // https://www.npmjs.com/package/react-pdf
 // https://github.com/wojtekmaj/react-pdf/wiki/Recipes
-export default function SelectCsvHeaders({ files }) {
+export default function SelectCsvHeaders({ setActiveStep, files, setCsvLines }) {
 
     const [numPages, setNumPages] = useState(0);
 
@@ -83,12 +82,12 @@ export default function SelectCsvHeaders({ files }) {
             }
         }
 
-        // for each line, check if it conforms to header
-        // if not, exclude it
+        // format lines for our csv
+        const csvLines = [];
         const headers = pages[targetPageNumber - 1].get(event.target.style.top);
-        for (const lines of pages) {
-            for (const line of lines.values()) {
-                const excludeReason = getExcludeReason(headers, line);
+        for (const page of pages) {
+            for (const line of page.values()) {
+                const excludeReason = formatLine(csvLines, page, headers, line);
                 if (excludeReason) {
                     // exclude all elements in the line
                     for (const textElement of line) {
@@ -98,21 +97,26 @@ export default function SelectCsvHeaders({ files }) {
                 }
             }
         }
+
+        localStorage.setItem("csvLines", JSON.stringify(csvLines));
     }
 
-    function getExcludeReason(headers, line) {
+    // return the reason if a line can't be formatted
+    function formatLine(csvLines, page, headers, line) {
+
+        // don't do anything if this line is our header
         if (line[0].hasAttribute("selected")) {
-            // this is our header
+            const csvLine = toCsv(line);
+            csvLines.push(csvLine);
             return null;
         }
 
         // columns don't match
-        // TODO check bounds
         if (line.length < headers.length) {
             return "Incorrect no. of columns: " + line.length;
         }
 
-        // exclude duplicated headers
+        // if this line has the same content as the headers, exclude it
         let isDuplicatedHeader = true;
         for (let i = 0; i < headers.length; i++) {
             if (headers[i].textContent !== line[i].textContent) {
@@ -123,7 +127,25 @@ export default function SelectCsvHeaders({ files }) {
         if (isDuplicatedHeader) {
             return "Duplicated headers";
         }
+
+        // format the line
+        for (let i = 0; i < headers.length; i++) {
+            //TODO
+
+        }
+        const csvLine = toCsv(line);
+        csvLines.push(csvLine);
+
         return null;
+    }
+
+    function toCsv(textElements) {
+        const csvLine = [];
+        for (const textElement of textElements) {
+            csvLine.push(textElement.textContent);
+        }
+
+        return csvLine;
     }
 
     function parseStyle(style) {
@@ -131,21 +153,18 @@ export default function SelectCsvHeaders({ files }) {
         return Number(string);
     }
 
+    function nextButtonClicked() {
+        setActiveStep("CsvTransform");
+    }
+
     return (
         <>
             <div className="alert alert-info" role="alert">
-                Select the headers of your CSV.
-                The following will be excluded from the CSV:
-                <ul>
-                    <li>Any content before the headers</li>
-                    <li>Any line that does not have the same format as the headers</li>
-                    <li>Any line with the same content and format as the headers</li>
-                    <li>Any image</li>
-                </ul>
+                Select the headers of your CSV
             </div>
 
             <div className="text-end">
-                <button type="button" className="btn btn-primary" disabled>Transform CSV</button>
+                <button type="button" className="btn btn-primary" onClick={nextButtonClicked}>Transform CSV</button>
             </div>
 
             <div className="mt-3">
@@ -159,7 +178,7 @@ export default function SelectCsvHeaders({ files }) {
                                 onRenderTextLayerSuccess={onTextLayerRender}
                                 className="pdfPage"
                             />
-                        ),
+                        )
                     )}
                 </Document>
             </div>

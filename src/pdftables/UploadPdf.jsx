@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import "./styles.css";
 
 // event.preventDefault() is used to prevent browser from navigating away when user drops a file
 export default function UploadPdf({ setActiveStep, setFiles }) {
