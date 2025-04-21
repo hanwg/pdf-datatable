@@ -3,11 +3,11 @@ import { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
-import SelectPdf from "./pdftables/SelectPdf";
-import SelectCsvHeaders from "./pdftables/SelectCsvHeaders";
-import CsvTransform from "./pdftables/CsvTransform";
+import SelectPdf from "./pdfdatatable/SelectPdf";
+import SelectCsvElement from "./pdfdatatable/SelectCsvElement";
+import CsvTransform from "./pdfdatatable/CsvTransform";
 
-export default function PdfTables() {
+export default function PdfDataTable() {
 
     const [activeStep, setActiveStep] = useState('SelectPdf');
     const [files, setFiles] = useState([]);
@@ -20,8 +20,8 @@ export default function PdfTables() {
                 <SelectPdf setActiveStep={setActiveStep} setFiles={setFiles} />
             </div>
 
-            <div className={activeStep === 'SelectCsvHeaders' ? 'container my-5' : 'hidden'}>
-                <SelectCsvHeaders setActiveStep={setActiveStep} files={files} />
+            <div className={activeStep === 'SelectCsvElement' ? 'container my-5' : 'hidden'}>
+                <SelectCsvElement setActiveStep={setActiveStep} files={files} />
             </div>
 
             <div className={activeStep === 'CsvTransform' ? 'container my-5' : 'hidden'}>

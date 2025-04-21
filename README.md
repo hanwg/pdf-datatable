@@ -1,4 +1,4 @@
-# ![pdf-tables-logo.png](src/assets/pdf-tables-logo.png) PDF Tables
+# ![pdf-tables-logo.png](src/assets/pdf-datatable-logo.png) PDF Tables
 
 PDF Tables is a free tool for exporting PDFs to CSV.  
 **[Get Started](https://pdftables.hanwg.top/)**

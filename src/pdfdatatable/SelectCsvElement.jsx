@@ -13,7 +13,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 
 // https://www.npmjs.com/package/react-pdf
 // https://github.com/wojtekmaj/react-pdf/wiki/Recipes
-export default function SelectCsvHeaders({ setActiveStep, files, setCsvLines }) {
+export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) {
 
     const [numPages, setNumPages] = useState(0);
 

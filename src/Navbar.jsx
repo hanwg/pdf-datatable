@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 import githubLogo from './assets/github-mark-white.svg';
-import pdfTablesLogo from './assets/pdf-tables-logo.png';
+import pdfDataTableLogo from './assets/pdf-datatable-logo.png';
 
 export default function Navbar() {
 
@@ -9,7 +9,7 @@ export default function Navbar() {
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
-                    <NavLink to="/" className="navbar-brand abs home"><img src={pdfTablesLogo} alt="PDF Tables logo" /> PDF Tables</NavLink>
+                    <NavLink to="/" className="navbar-brand abs home"><img src={pdfDataTableLogo} alt="PDF DataTable logo" /> PDF DataTable</NavLink>
 
                     <button className="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

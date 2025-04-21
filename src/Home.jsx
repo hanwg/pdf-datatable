@@ -28,7 +28,7 @@ export default function Home() {
                             <h5>✨ Powerful yet easy to use</h5>
                         </div>
                         <div className="card-title">
-                            <p>PDF Tables allow you to select where your data starts on your PDF. Watch real-time previews of your CSV records as you navigate through elements in your PDF.</p>
+                            <p>PDF DataTable allows you to select where your data starts on your PDF. Watch real-time previews of your CSV records as you navigate through elements in your PDF.</p>
                         </div>
                     </div>
 
@@ -55,7 +55,7 @@ export default function Home() {
                             <h5>🔒 Works with password-protected PDFs</h5>
                         </div>
                         <div className="card-title">
-                            <p>Don't let locked PDFs stop you down. PDF Tables has built-in support for password-protected PDFs.</p>
+                            <p>Don't let locked PDFs stop you. PDF DataTable has built-in support for password-protected PDFs.</p>
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@ export default function Home() {
                             <h5>📃 No file size limits</h5>
                         </div>
                         <div className="card-title">
-                            <p>Go big! PDF Tables offers flexibility to process even your largest files with ease.</p>
+                            <p>Go big! PDF DataTable offers flexibility to process even your largest files with ease.</p>
                         </div>
                     </div>
 

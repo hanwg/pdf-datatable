@@ -30,7 +30,7 @@ export default function SelectPdf({ setActiveStep, setFiles }) {
 
     function handleFiles(files) {
         setFiles(files);
-        setActiveStep('SelectCsvHeaders');
+        setActiveStep('SelectCsvElement');
     }
 
     return (

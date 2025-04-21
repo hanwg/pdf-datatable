@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import Home from './Home';
-import PdfTables from './PdfTables';
+import PdfDataTable from './PdfDataTable';
 import Faq from './Faq';
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
         <>
             <Routes>
                 <Route path='/' element={<Home/>} />
-                <Route path='/start' element={<PdfTables/>} />
+                <Route path='/start' element={<PdfDataTable/>} />
                 <Route path='/faq' element={<Faq/>} />
             </Routes>
         </>
