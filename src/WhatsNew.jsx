@@ -11,7 +11,7 @@ export default function WhatsNew() {
                 <div className="jumbotron">
                     <h1 className="my-5 display-4 text-center">What's New</h1>
 
-                    <ul class="timeline">
+                    <ul className="timeline">
                         <li>
                             <p><strong>Upcoming...</strong></p>
                             <p>Support for password-protected PDFs.</p>
