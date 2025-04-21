@@ -31,8 +31,8 @@ With customizable CSV options, you have the flexibility to choose delimiters and
 
 # Documentation
 
-Please refer to the **[Wiki](https://github.com/hanwg/pdf-tables/wiki)**.
+Please refer to the **[Wiki](https://github.com/hanwg/pdf-datatable/wiki)**.
 
 # FAQ
 
-Please refer to the **[FAQ](https://pdftables.hanwg.top/faq)** on the website.
+Please refer to the **[FAQ](https://pdf-datatable.hanwg.top/faq)** on the website.
