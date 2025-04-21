@@ -1,7 +1,7 @@
-# ![pdf-tables-logo.png](src/assets/pdf-datatable-logo.png) PDF Tables
+# ![pdf-tables-logo.png](src/assets/pdf-datatable-logo.png) PDF DataTable
 
-PDF Tables is a free tool for exporting PDFs to CSV.  
-**[Get Started](https://pdftables.hanwg.top/)**
+PDF DataTable is a free tool for exporting PDFs to CSV.  
+**[Get Started](https://pdf-datatable.hanwg.top/)**
 
 # Features & Screenshots
 
@@ -17,7 +17,7 @@ Get started worry-free.
 
 **Works with password-protected PDFs**
 
-Don't let locked PDFs stop you down. PDF Tables has built-in support for password-protected PDFs.
+Don't let locked PDFs stop you down. PDF DataTable has built-in support for password-protected PDFs.
 Coming soon
 
 **PDF preview**
