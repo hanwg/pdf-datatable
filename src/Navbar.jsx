@@ -7,7 +7,6 @@ export default function Navbar() {
 
     return (
         <>
-            <title>PDF DataTable | Start</title>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
                     <NavLink to="/" className="navbar-brand abs home"><img src={pdfDataTableLogo} alt="PDF DataTable logo" /> PDF DataTable</NavLink>
