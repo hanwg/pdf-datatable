@@ -50,7 +50,7 @@ export default function SelectPdf({ setActiveStep, setFiles }) {
                         onClick={handleDropAreaClicked}>
 
                         <p className="icon-link"><img src={pdfIcon} alt="PDF icon" className="logo" /> Drag and drop files here, or click to select files</p>
-                        <p>(Files are never uploaded to the server and will only remain in your device)</p>
+                        <p>(Files are never uploaded to the server)</p>
                         <input type="file" id="file-input" multiple className="hidden" ref={fileInput} accept=".pdf" onChange={(event) => handleFiles(event.target.files)} />
                     </div>
                 </div>

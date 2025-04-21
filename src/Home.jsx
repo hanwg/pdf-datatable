@@ -23,39 +23,57 @@ export default function Home() {
                 <hr className="my-4 mt-5"/>
 
                 <div className="row justify-content-evenly">
-                    <div className="col-xs-12 col-sm-6 col-md-3">
+                    <div className="col-xs-12 col-sm-6 col-md-6">
                         <div className="card-header">
-                            <h5>✅ Powerful yet easy to use</h5>
+                            <h5>✨ Powerful yet easy to use</h5>
                         </div>
                         <div className="card-title">
                             <p>PDF Tables allow you to select where your data starts on your PDF. Watch real-time previews of your CSV records as you navigate through elements in your PDF.</p>
                         </div>
                     </div>
 
-                    <div className="col-xs-12 col-sm-6 col-md-3">
+                    <div className="col-xs-12 col-sm-6 col-md-6">
                         <div className="card-header">
-                            <h5>🌐 Free and Open Source Software (FOSS)</h5>
+                            <h5>🌐 Free and Open-Source Software (FOSS)</h5>
                         </div>
                         <div className="card-title">
-                            <p>PDF Tables is free to use! Interested in self-hosting? Check out the GitHub repository.</p>
+                            <p>Take control of your tools. Being FOSS means you have the freedom to adapt and share.</p>
                         </div>
                     </div>
 
-                    <div className="col-xs-12 col-sm-6 col-md-3">
+                    <div className="col-xs-12 col-sm-6 col-md-6">
                         <div className="card-header">
-                            <h5>🔒 Security and Privacy focused</h5>
+                            <h5>🛡️ Privacy and security</h5>
                         </div>
                         <div className="card-title">
-                            <p>Files are never uploaded to the server. Everything is done within your device.</p>
+                            <p>Keep your data private and secure. We never upload or store your files, and your passwords stay on your device.</p>
                         </div>
                     </div>
 
-                    <div className="col-xs-12 col-sm-6 col-md-3">
+                    <div className="col-xs-12 col-sm-6 col-md-6">
                         <div className="card-header">
-                            <h5>📃 No file size limit</h5>
+                            <h5>🔒 Works with password-protected PDFs</h5>
                         </div>
                         <div className="card-title">
-                            <p>There are no built-in limits. Process files as large as you like as long as your device can handle it.</p>
+                            <p>Don't let locked PDFs stop you down. PDF Tables has built-in support for password-protected PDFs.</p>
+                        </div>
+                    </div>
+
+                    <div className="col-xs-12 col-sm-6 col-md-6">
+                        <div className="card-header">
+                            <h5>📃 No file size limits</h5>
+                        </div>
+                        <div className="card-title">
+                            <p>Go big! PDF Tables offers flexibility to process even your largest files with ease.</p>
+                        </div>
+                    </div>
+
+                    <div className="col-xs-12 col-sm-6 col-md-6">
+                        <div className="card-header">
+                            <h5>⚡ No queues or wait times</h5>
+                        </div>
+                        <div className="card-title">
+                            <p>Enjoy a smooth and uninterrupted experience. No queues, no delays – just instant access whenever you need it.</p>
                         </div>
                     </div>
                 </div>
