@@ -4,6 +4,7 @@ import Footer from "./Footer";
 export default function Faq() {
     return (
         <>
+            <title>PDF DataTable | FAQ</title>
             <Navbar />
 
             <div className="container">

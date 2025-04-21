@@ -4,6 +4,7 @@ import Footer from "./Footer";
 export default function WhatsNew() {
     return (
         <>
+            <title>PDF DataTable | What's new</title>
             <Navbar />
 
             <div className="container">

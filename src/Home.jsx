@@ -7,6 +7,7 @@ export default function Home() {
 
     return (
         <>
+            <title>PDF DataTable | Home</title>
             <Navbar />
 
             <div className="container-fluid">

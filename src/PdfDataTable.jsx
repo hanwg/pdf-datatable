@@ -14,6 +14,7 @@ export default function PdfDataTable() {
 
     return (
         <>
+            <title>PDF DataTable | FAQ</title>
             <Navbar />
 
             <div className={activeStep === 'SelectPdf' ? 'container my-5' : 'hidden'}>
