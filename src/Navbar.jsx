@@ -22,7 +22,7 @@ export default function Navbar() {
                                   <NavLink to="/start" className="nav-link">Start</NavLink>
                               </li>
                               <li className="nav-item px-3">
-                                  <NavLink to="/faq" className="nav-link" activeClassName="active">FAQ</NavLink>
+                                  <NavLink to="/faq" className="nav-link">FAQ</NavLink>
                               </li>
                               <li className="nav-item px-3">
                                   <NavLink to="https://github.com/hanwg/pdf-tables" className="nav-link" target="_blank"><img src={githubLogo} className="d-inline-block align-text-top logo" alt="GitHub logo" /> GitHub</NavLink>

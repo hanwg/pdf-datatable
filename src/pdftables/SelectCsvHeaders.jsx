@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { pdfjs, Document, Page } from 'react-pdf';
 
+import { saveCsv } from '../utils.js';
+
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
@@ -98,7 +100,7 @@ export default function SelectCsvHeaders({ setActiveStep, files, setCsvLines }) 
             }
         }
 
-        localStorage.setItem("csvLines", JSON.stringify(csvLines));
+        saveCsv(csvLines);
     }
 
     // return the reason if a line can't be formatted
@@ -113,7 +115,7 @@ export default function SelectCsvHeaders({ setActiveStep, files, setCsvLines }) 
 
         // columns don't match
         if (line.length < headers.length) {
-            return "Incorrect no. of columns: " + line.length;
+            return "This line doesn't have the right number of columns as the headers. Expected: " + headers.length + ", Found: " + line.length;
         }
 
         // if this line has the same content as the headers, exclude it
@@ -153,7 +155,7 @@ export default function SelectCsvHeaders({ setActiveStep, files, setCsvLines }) 
         return Number(string);
     }
 
-    function nextButtonClicked() {
+    function nextButtonClicked(event) {
         setActiveStep("CsvTransform");
     }
 
@@ -164,11 +166,11 @@ export default function SelectCsvHeaders({ setActiveStep, files, setCsvLines }) 
             </div>
 
             <div className="text-end">
-                <button type="button" className="btn btn-primary" onClick={nextButtonClicked}>Transform CSV</button>
+                <button id="nextButton" type="button" className="btn btn-primary" onClick={nextButtonClicked}>Transform CSV</button>
             </div>
 
             <div className="mt-3">
-                <Document file={files[0]} onLoadSuccess={onDocumentLoad}>
+                <Document file={files[0]} onLoadSuccess={onDocumentLoad} className="pdfDocument">
                     {Array.from(
                         new Array(numPages),
                         (el, index) => (
@@ -176,6 +178,7 @@ export default function SelectCsvHeaders({ setActiveStep, files, setCsvLines }) 
                                 key={`page_${index + 1}`}
                                 pageNumber={index + 1}
                                 onRenderTextLayerSuccess={onTextLayerRender}
+                                scale={1.5}
                                 className="pdfPage"
                             />
                         )

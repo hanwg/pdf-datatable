@@ -47,6 +47,10 @@ span[excluded="true"] {
     margin-top: 20px;
 }
 
+.pdfDocument {
+    width: fit-content;
+}
+
 /* general classes */
 
 body {
@@ -72,6 +76,18 @@ body {
 
 .alert {
     font-weight: bold;
+}
+
+form {
+    background: #f1f7ff;
+}
+
+.form-group {
+    padding-top: 10px;
+}
+
+fieldset {
+    padding-top: 10px;
 }
 
 .hidden {

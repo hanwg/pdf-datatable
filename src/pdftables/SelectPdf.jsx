@@ -36,7 +36,7 @@ export default function SelectPdf({ setActiveStep, setFiles }) {
     return (
         <>
             <div className="alert alert-info" role="alert">
-                Select a PDF file that you want to convert
+                Select a PDF file
             </div>
 
             <div className="row justify-content-center">
