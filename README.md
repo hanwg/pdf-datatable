@@ -3,9 +3,12 @@
 PDF DataTable is a free tool for exporting PDFs to CSV.  
 **[Get Started](https://pdf-datatable.hanwg.top/)**
 
+[What's new?](https://pdf-datatable.hanwg.top/whats-new)
+
+
 # Features & Screenshots
 
-**Security and privacy focused**
+**Privacy and security**
 
 Keep your data private and secure.
 We never upload or store your files, and your passwords stay on your device.
@@ -17,17 +20,20 @@ Get started worry-free.
 
 **Works with password-protected PDFs**
 
-Don't let locked PDFs stop you down. PDF DataTable has built-in support for password-protected PDFs.
+Don't let locked PDFs stop you. PDF DataTable has built-in support for password-protected PDFs.
 Coming soon
 
 **PDF preview**
 
-precise CSV export
+PDF DataTable allows you to select where your data starts on your PDF.
+Watch real-time previews of your CSV records as you navigate through elements in your PDF.  
+(Elements excluded from the CSV are greyed-out)
+![select-headers.jpeg](screenshots/select-headers.jpeg)
 
 **CSV options**
 
 With customizable CSV options, you have the flexibility to choose delimiters and quote characters.
-
+![transform-csv.jpeg](screenshots/transform-csv.jpeg)
 
 # Documentation
 

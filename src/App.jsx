@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Home from './Home';
 import PdfDataTable from './PdfDataTable';
+import WhatsNew from './WhatsNew';
 import Faq from './Faq';
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
             <Routes>
                 <Route path='/' element={<Home/>} />
                 <Route path='/start' element={<PdfDataTable/>} />
+                <Route path='/whats-new' element={<WhatsNew/>} />
                 <Route path='/faq' element={<Faq/>} />
             </Routes>
         </>

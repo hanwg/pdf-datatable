@@ -162,7 +162,7 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
     return (
         <>
             <div className="alert alert-info" role="alert">
-                Select the headers of your CSV
+                Select the headers (or the 1st row) of your CSV
             </div>
 
             <div className="text-end">

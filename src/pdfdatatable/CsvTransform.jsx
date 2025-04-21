@@ -145,6 +145,7 @@ export default function CsvTransform({ setActiveStep, files }) {
                     <a ref={downloadLink} className="hidden" href="/">Download CSV</a>
                 </div>
 
+                <div className="pb-3"><i>{csvLines.length} records found</i></div>
                 <table className="table table-striped" id="datatable">
 
                     <thead>

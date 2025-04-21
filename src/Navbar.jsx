@@ -21,6 +21,9 @@ export default function Navbar() {
                                 <NavLink to="/start" className="nav-link">Start</NavLink>
                             </li>
                             <li className="nav-item px-3">
+                                <NavLink to="/whats-new" className="nav-link">What's New</NavLink>
+                            </li>
+                            <li className="nav-item px-3">
                                 <NavLink to="/faq" className="nav-link">FAQ</NavLink>
                             </li>
                             <li className="nav-item px-3">
