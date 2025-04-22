@@ -31,8 +31,8 @@ export default function SelectPdf({ setActiveStep, setFiles }) {
 
     function handleFiles(files) {
         ReactGA.event({
-            category: "pdf datatable",
-            action: "select_files"
+            category: "Pdf Datatable",
+            action: "Select Files"
         });
 
         setFiles(files);
