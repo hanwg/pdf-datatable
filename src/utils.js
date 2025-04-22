@@ -8,12 +8,19 @@ export function loadCsv() {
     return JSON.parse(data);
 }
 
-export function xIntersect(element1, element2) {
-    const rect1 = element1.getBoundingClientRect();
-    const rect1Start = rect1.x;
-    const rect1End = rect1.x + rect1.width;
+export function xIntersect(headers, headerIndex, element) {
 
-    const rect2 = element2.getBoundingClientRect();
+    const rect1 = headers[headerIndex].getBoundingClientRect();
+    const rect1Start = rect1.x;
+    let rect1End = 0;
+    if (headerIndex === headers.length - 1) {
+        rect1End = rect1.x + rect1.width;
+    } else {
+        const next = headers[headerIndex + 1].getBoundingClientRect();
+        rect1End = next.x - 1;
+    }
+
+    const rect2 = element.getBoundingClientRect();
     const rect2Start = rect2.x;
     const rect2End = rect2.x + rect2.width;
 

@@ -93,19 +93,17 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
         // format lines for our csv
         const csvLines = [];
         const headers = pages[targetPageNumber - 1].get(event.target.style.top);
-        for (const page of pages) {
-            for (const line of page.values()) {
-                const excludeReason = formatLine(csvLines, page, headers, line);
-                if (excludeReason) {
-                    // exclude all elements in the line
-                    for (const textElement of line) {
-                        textElement.setAttribute("excluded", "true");
-                        textElement.setAttribute("title", excludeReason);
-                    }
-                }
+        for (let i = 0; i < pages.length; i++) {
+            const lines = pages[i].keys()
+                .toArray()
+                .sort(function (o1, o2) { return Number(o1.replace("%", "") - Number(o2.replace("%", "")))});
+            for (const line of lines) {
+                formatLine(csvLines, pages[i], headers, pages[i].get(line));
             }
         }
 
+        for (const csvLine of csvLines)
+            console.log(csvLine.join(","));
         saveCsv(csvLines);
     }
 
@@ -116,7 +114,7 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
         if (line[0].hasAttribute("selected")) {
             const csvLine = toCsv(line);
             csvLines.push(csvLine);
-            return null;
+            return;
         }
 
         // columns don't match
@@ -143,7 +141,7 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
                 continue;
             }
 
-            if (xIntersect(headers[headerIndex], line[columnIndex])) {
+            if (xIntersect(headers, headerIndex, line[columnIndex])) {
                 // concatenate the text
                 csvLine[headerIndex] = csvLine[headerIndex] ? csvLine[headerIndex] : ""  + line[columnIndex].textContent;
                 columnIndex++;
@@ -158,21 +156,6 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
             }
         }
         csvLines.push(csvLine);
-        console.log(csvLine.join(","));
-
-        // if this line has the same content as the headers, exclude it
-        let isDuplicatedHeader = true;
-        for (let i = 0; i < headers.length; i++) {
-            if (headers[i].textContent !== line[i].textContent) {
-                isDuplicatedHeader = false;
-                break;
-            }
-        }
-        if (isDuplicatedHeader) {
-            return "Duplicated headers";
-        }
-
-        return null;
     }
 
     function toCsv(textElements) {
