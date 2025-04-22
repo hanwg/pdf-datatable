@@ -29,7 +29,7 @@ export default function SelectPdf({ setActiveStep, setFiles }) {
         fileInput.current.click();
     }
 
-    function handleFiles(files) {debugger
+    function handleFiles(files) {
         ReactGA.event({
             category: "pdf datatable",
             action: "select_files"
