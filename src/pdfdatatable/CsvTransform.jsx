@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import ReactGA from 'react-ga4';
 
 import { loadCsv } from '../utils.js';
 
@@ -30,6 +31,12 @@ export default function CsvTransform({ setActiveStep, files }) {
 
         downloadLink.current.download = csvFilename;
         downloadLink.current.href = URL.createObjectURL(blob);
+
+        ReactGA.event({
+            category: "Pdf Datatable",
+            action: "Download Csv"
+        });
+
         downloadLink.current.click();
     }
 

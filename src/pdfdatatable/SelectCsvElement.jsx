@@ -158,8 +158,8 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
 
     function nextButtonClicked(event) {
         ReactGA.event({
-            category: "pdf datatable",
-            action: "transform_csv"
+            category: "Pdf Datatable",
+            action: "Transform Csv"
         });
 
         setActiveStep("CsvTransform");
