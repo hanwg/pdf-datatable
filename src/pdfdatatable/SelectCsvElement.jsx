@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { pdfjs, Document, Page } from 'react-pdf';
 import ReactGA from 'react-ga4';
 
+import PasswordDialog from './PasswordDialog';
 import { saveCsv } from '../utils.js';
 
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -17,13 +18,17 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) {
 
     const [numPages, setNumPages] = useState(0);
+    const [showPasswordDialog, setShowPasswordDialog] = useState(false);
+    const [key, setKey] = useState(0);
+    const [password, setPassword] = useState("");
+    const [isPasswordValid, setIsPasswordValid] = useState(true);
+
+    useEffect(() => {
+        // trigger reload of document when password is ready
+        setKey(k => k + 1);
+      }, [password, showPasswordDialog]);
 
     let pagesRendered = 0;
-
-    function onDocumentLoad(pdf) {
-        setNumPages(pdf.numPages);
-    }
-
     function onTextLayerRender() {
         pagesRendered++;
 
@@ -165,6 +170,32 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
         setActiveStep("CsvTransform");
     }
 
+    function promptPassword(callback, reason) {
+        if (showPasswordDialog) {
+            // wait for password
+            return;
+        }
+
+        if (reason === 2) {
+            // wrong password
+            setIsPasswordValid(false);
+            setPassword("");
+            setShowPasswordDialog(true);
+            return;
+        }
+
+        if (password === null) {
+            // user cancelled the password dialog
+            window.location.reload();
+        } else if (password) {
+            // password already provided
+            callback(password);
+            return;
+        }
+
+        setShowPasswordDialog(true);
+    }
+
     return (
         <>
             <div className="alert alert-info" role="alert">
@@ -176,7 +207,9 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
             </div>
 
             <div className="mt-3">
-                <Document file={files[0]} onLoadSuccess={onDocumentLoad} className="pdfDocument">
+                <Document file={files[0]} key={key}
+                    onLoadSuccess={(pdf) => setNumPages(pdf.numPages)}
+                    onPassword={promptPassword} className="pdfDocument">
                     {Array.from(
                         new Array(numPages),
                         (el, index) => (
@@ -191,6 +224,8 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
                     )}
                 </Document>
             </div>
+
+            <PasswordDialog setPassword={setPassword} isVisible={showPasswordDialog} setIsVisible={setShowPasswordDialog} isPasswordValid={isPasswordValid} />
         </>
     );
 }

@@ -25,10 +25,6 @@ export default function SelectPdf({ setActiveStep, setFiles }) {
         handleFiles(event.dataTransfer.files);
     }
 
-    function handleDropAreaClicked() {
-        fileInput.current.click();
-    }
-
     function handleFiles(files) {
         ReactGA.event({
             category: "Pdf Datatable",
@@ -53,7 +49,7 @@ export default function SelectPdf({ setActiveStep, setFiles }) {
                         onDragEnter={dropAreaActive}
                         onDragOver={dropAreaActive}
                         onDragLeave={dropAreaInactive}
-                        onClick={handleDropAreaClicked}>
+                        onClick={() => fileInput.current.click()}>
 
                         <p className="icon-link"><img src={pdfIcon} alt="PDF icon" className="logo" /> Drag and drop files here, or click to select files</p>
                         <p>(Files are never uploaded to the server)</p>

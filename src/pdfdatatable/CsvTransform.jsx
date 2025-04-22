@@ -64,10 +64,6 @@ export default function CsvTransform({ setActiveStep, files }) {
 
     // form input functions
 
-    function csvFilenameChanged(event) {
-        setCsvFilename(event.target.value);
-    }
-
     function columnDelimiterChanged(event) {
         let char = event.currentTarget.value;
         if (char === "\\t") {
@@ -75,18 +71,6 @@ export default function CsvTransform({ setActiveStep, files }) {
         }
 
         setColumnDelimiter(char);
-    }
-
-    function rowDelimiterWindows(event) {
-        setRowDelimiter("\r\n");
-    }
-
-    function rowDelimiterLinux(event) {
-        setRowDelimiter("\n");
-    }
-
-    function quoteCharacterChanged(event) {
-        setQuoteCharacter(event.target.value);
     }
 
     return (
@@ -104,14 +88,14 @@ export default function CsvTransform({ setActiveStep, files }) {
                     <div className="form-group row">
                         <label htmlFor="csvFilename" className="col-sm-2 col-form-label">CSV filename</label>
                         <div className="col-sm-10">
-                            <input type="text" id="csvFilename" className="form-control" value={csvFilename} onChange={csvFilenameChanged} />
+                            <input type="text" id="csvFilename" className="form-control" value={csvFilename} onChange={event => setCsvFilename(event.target.value)} />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label htmlFor="quoteCharacter" className="col-sm-2 col-form-label">Quote character</label>
                         <div className="col-sm-10">
-                            <input id="quoteCharacter" type="text" className="form-control" value={quoteCharacter} onChange={quoteCharacterChanged} />
+                            <input id="quoteCharacter" type="text" className="form-control" value={quoteCharacter} onChange={event => setQuoteCharacter(event.target.value)} />
                         </div>
                     </div>
 
@@ -132,13 +116,13 @@ export default function CsvTransform({ setActiveStep, files }) {
                         <legend className="col-form-label col-sm-2 pt-0">Row delimiter</legend>
                         <div className="col-sm-10">
                             <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="rowDelimiter" id="rowDelimiterWindows" value="\r\n" onChange={rowDelimiterWindows} defaultChecked="true" />
+                                <input className="form-check-input" type="radio" name="rowDelimiter" id="rowDelimiterWindows" value="\r\n" onChange={() => setRowDelimiter("\r\n")} defaultChecked="true" />
                                 <label className="form-check-label" htmlFor="rowDelimiterWindows">
                                     Windows CRLF (\r\n)
                                 </label>
                             </div>
                             <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="rowDelimiter" id="rowDelimiterLinux" value="\n" onChange={rowDelimiterLinux} />
+                                <input className="form-check-input" type="radio" name="rowDelimiter" id="rowDelimiterLinux" value="\n" onChange={() => setRowDelimiter("\n")} />
                                 <label className="form-check-label" htmlFor="rowDelimiterLinux">
                                     Linux LF (\n)
                                 </label>

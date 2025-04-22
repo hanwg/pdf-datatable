@@ -13,7 +13,7 @@ export default function WhatsNew() {
 
                     <ul className="timeline">
                         <li>
-                            <p><strong>Upcoming...</strong></p>
+                            <p><strong>22 April, 2025</strong></p>
                             <p>Support for password-protected PDFs.</p>
                         </li>
                         <li>
