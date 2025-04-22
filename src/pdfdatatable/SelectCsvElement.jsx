@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { pdfjs, Document, Page } from 'react-pdf';
+import ReactGA from 'react-ga4';
 
 import { saveCsv } from '../utils.js';
 
@@ -156,6 +157,11 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
     }
 
     function nextButtonClicked(event) {
+        ReactGA.event({
+            category: "pdf datatable",
+            action: "transform_csv"
+        });
+
         setActiveStep("CsvTransform");
     }
 

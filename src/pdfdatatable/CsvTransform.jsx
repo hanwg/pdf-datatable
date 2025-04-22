@@ -97,7 +97,7 @@ export default function CsvTransform({ setActiveStep, files }) {
                     <div className="form-group row">
                         <label htmlFor="csvFilename" className="col-sm-2 col-form-label">CSV filename</label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control" value={csvFilename} onChange={csvFilenameChanged} />
+                            <input type="text" id="csvFilename" className="form-control" value={csvFilename} onChange={csvFilenameChanged} />
                         </div>
                     </div>
 

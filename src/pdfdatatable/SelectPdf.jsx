@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import ReactGA from 'react-ga4';
 
 import pdfIcon from '../assets/pdf-icon.png';
 
@@ -28,7 +29,12 @@ export default function SelectPdf({ setActiveStep, setFiles }) {
         fileInput.current.click();
     }
 
-    function handleFiles(files) {
+    function handleFiles(files) {debugger
+        ReactGA.event({
+            category: "pdf datatable",
+            action: "select_files"
+        });
+
         setFiles(files);
         setActiveStep('SelectCsvElement');
     }
