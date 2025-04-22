@@ -3,7 +3,7 @@ import { pdfjs, Document, Page } from 'react-pdf';
 import ReactGA from 'react-ga4';
 
 import PasswordDialog from './PasswordDialog';
-import { saveCsv } from '../utils.js';
+import { saveCsv, xIntersect } from '../utils.js';
 
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -120,9 +120,45 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
         }
 
         // columns don't match
-        if (line.length < headers.length) {
-            return "This line doesn't have the right number of columns as the headers. Expected: " + headers.length + ", Found: " + line.length;
+        //if (line.length < headers.length) {
+        //    return "This line doesn't have the right number of columns as the headers. Expected: " + headers.length + ", Found: " + line.length;
+        //}
+
+        const leftLimit = headers[0].getBoundingClientRect().x;
+        const rightLimit = headers[headers.length - 1].getBoundingClientRect().x + headers[headers.length - 1].getBoundingClientRect().width;
+
+        const csvLine = [];
+        let headerIndex = 0;
+        let columnIndex = 0;
+        while (csvLine.length < headers.length) {
+            if (columnIndex >= line.length) {
+                break;
+            }
+
+            const rect = line[columnIndex].getBoundingClientRect();
+            if (rect.x + rect.width < leftLimit || rect.x > rightLimit) {
+                line[columnIndex].setAttribute("excluded", "true");
+                line[columnIndex].setAttribute("title", "Element is out of bounds");
+                columnIndex++;
+                continue;
+            }
+
+            if (xIntersect(headers[headerIndex], line[columnIndex])) {
+                // concatenate the text
+                csvLine[headerIndex] = csvLine[headerIndex] ? csvLine[headerIndex] : ""  + line[columnIndex].textContent;
+                columnIndex++;
+            } else {
+                // next column
+                headerIndex++;
+            }
         }
+        for (let i = 0; i < headers.length; i++) {
+            if (!csvLine[i]) {
+                csvLine[i] = "";
+            }
+        }
+        csvLines.push(csvLine);
+        console.log(csvLine.join(","));
 
         // if this line has the same content as the headers, exclude it
         let isDuplicatedHeader = true;
@@ -135,14 +171,6 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
         if (isDuplicatedHeader) {
             return "Duplicated headers";
         }
-
-        // format the line
-        for (let i = 0; i < headers.length; i++) {
-            //TODO
-
-        }
-        const csvLine = toCsv(line);
-        csvLines.push(csvLine);
 
         return null;
     }
