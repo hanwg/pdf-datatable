@@ -107,6 +107,10 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
             isOutOfProximity = true;
         }
 
+        for (const csvLine of csvLines) {
+            console.log(csvLine.join("|"));
+
+        }
         saveCsv(csvLines);
     }
 
@@ -175,13 +179,17 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
 
             if (xIntersect(headers, headerIndex, line[columnIndex])) {
                 // concatenate the text
-                csvLine[headerIndex] = csvLine[headerIndex] ? csvLine[headerIndex] : ""  + line[columnIndex].textContent;
+                csvLine[headerIndex] = csvLine[headerIndex] ? csvLine[headerIndex] + line[columnIndex].textContent : ""  + line[columnIndex].textContent;
                 line[columnIndex].setAttribute("column", headerIndex);
                 columnIndex++;
             } else {
                 // next column
                 headerIndex++;
             }
+        }
+
+        if (csvLine.length < 1) {
+            return false;
         }
 
         // fill empty columns
