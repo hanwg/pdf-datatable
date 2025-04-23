@@ -91,24 +91,61 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
         }
 
         // format lines for our csv
+        let isOutOfProximity = false;
         const csvLines = [];
         const headers = pages[targetPageNumber - 1].get(event.target.style.top);
         for (let i = 0; i < pages.length; i++) {
             const lines = pages[i].keys()
                 .toArray()
                 .sort(function (o1, o2) { return Number(o1.replace("%", "") - Number(o2.replace("%", "")))});
+            let prevLine = null;
+
             for (const line of lines) {
-                formatLine(csvLines, pages[i], headers, pages[i].get(line));
+                isOutOfProximity = formatLine(csvLines, pages[i], headers, prevLine, pages[i].get(line), isOutOfProximity);
+                prevLine = pages[i].get(line);
             }
+            isOutOfProximity = true;
         }
 
-        for (const csvLine of csvLines)
-            console.log(csvLine.join(","));
         saveCsv(csvLines);
     }
 
     // return the reason if a line can't be formatted
-    function formatLine(csvLines, page, headers, line) {
+    function formatLine(csvLines, page, headers, prevLine, line, isOutOfProximity) {
+
+        const lineStr = line.map(column => column.textContent)
+            .join("|");
+        if (csvLines.length > 0) {
+            const headerStr = csvLines[0].join("|");
+            if (headerStr === lineStr) {
+                isOutOfProximity = false;
+            }
+        }
+
+        // check proximity
+        if (prevLine || isOutOfProximity) {
+            let exclude = false;
+            if (isOutOfProximity) {
+                exclude = true;
+            } else {
+                const prevRect = prevLine[0].getBoundingClientRect();
+                const bottom = prevRect.y + prevRect.height;
+                const top = line[0].getBoundingClientRect().y;
+
+                if (top - bottom >= 2 * prevRect.height) {
+                    exclude = true;
+                }
+            }
+
+            if (exclude) {
+                for (const column of line) {
+                    column.setAttribute("excluded", "true");
+                    column.setAttribute("title", "Excluded due to proximity");
+                }
+
+                return true;
+            }
+        }
 
         // don't do anything if this line is our header
         if (line[0].hasAttribute("selected")) {
@@ -116,11 +153,6 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
             csvLines.push(csvLine);
             return;
         }
-
-        // columns don't match
-        //if (line.length < headers.length) {
-        //    return "This line doesn't have the right number of columns as the headers. Expected: " + headers.length + ", Found: " + line.length;
-        //}
 
         const leftLimit = headers[0].getBoundingClientRect().x;
         const rightLimit = headers[headers.length - 1].getBoundingClientRect().x + headers[headers.length - 1].getBoundingClientRect().width;
@@ -144,18 +176,23 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
             if (xIntersect(headers, headerIndex, line[columnIndex])) {
                 // concatenate the text
                 csvLine[headerIndex] = csvLine[headerIndex] ? csvLine[headerIndex] : ""  + line[columnIndex].textContent;
+                line[columnIndex].setAttribute("column", headerIndex);
                 columnIndex++;
             } else {
                 // next column
                 headerIndex++;
             }
         }
+
+        // fill empty columns
         for (let i = 0; i < headers.length; i++) {
             if (!csvLine[i]) {
                 csvLine[i] = "";
             }
         }
+
         csvLines.push(csvLine);
+        return false;
     }
 
     function toCsv(textElements) {
