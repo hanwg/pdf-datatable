@@ -106,20 +106,15 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
                 isOutOfProximity = formatLine(csvLines, pages[i], headers, prevLine, line, isOutOfProximity);
                 prevLine = line;
             }
-            isOutOfProximity = i == targetPageNumber - 2 ? false : true;
+            isOutOfProximity = i === targetPageNumber - 2 ? false : true;
         }
 
-        for (const csvLine of csvLines) {
-            console.log(csvLine.join("|"));
-
-        }
         saveCsv(csvLines);
     }
 
     function handleOverlappingElements(line) {
         const stack = [];
         for (const textElement of line) {
-            const t = textElement.textContent
             const prev = stack[stack.length - 1];
             if (prev && intersect(prev, textElement)) {
                 prev.innerHTML = prev.innerHTML + textElement.textContent;
