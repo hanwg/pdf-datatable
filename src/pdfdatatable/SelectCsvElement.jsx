@@ -3,7 +3,7 @@ import { pdfjs, Document, Page } from 'react-pdf';
 import ReactGA from 'react-ga4';
 
 import PasswordDialog from './PasswordDialog';
-import { saveCsv, xIntersect } from '../utils.js';
+import { saveCsv, xIntersect, intersect } from '../utils.js';
 
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -60,7 +60,7 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
 
         for (const textElement of textElements) {
             if (textElement.textContent.trim() === "") {
-                continue;
+                //continue;
             }
 
             // clear previous selection
@@ -93,18 +93,20 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
         // format lines for our csv
         let isOutOfProximity = false;
         const csvLines = [];
-        const headers = pages[targetPageNumber - 1].get(event.target.style.top);
+        let headers = pages[targetPageNumber - 1].get(event.target.style.top);
+        headers = handleOverlappingElements(headers);
         for (let i = 0; i < pages.length; i++) {
-            const lines = pages[i].keys()
+            const lineYs = pages[i].keys()
                 .toArray()
                 .sort(function (o1, o2) { return Number(o1.replace("%", "") - Number(o2.replace("%", "")))});
             let prevLine = null;
 
-            for (const line of lines) {
-                isOutOfProximity = formatLine(csvLines, pages[i], headers, prevLine, pages[i].get(line), isOutOfProximity);
-                prevLine = pages[i].get(line);
+            for (const lineY of lineYs) {
+                const line = csvLines.length < 1 ? headers : handleOverlappingElements(pages[i].get(lineY));
+                isOutOfProximity = formatLine(csvLines, pages[i], headers, prevLine, line, isOutOfProximity);
+                prevLine = line;
             }
-            isOutOfProximity = true;
+            isOutOfProximity = i == targetPageNumber - 2 ? false : true;
         }
 
         for (const csvLine of csvLines) {
@@ -112,6 +114,24 @@ export default function SelectCsvElement({ setActiveStep, files, setCsvLines }) 
 
         }
         saveCsv(csvLines);
+    }
+
+    function handleOverlappingElements(line) {
+        const stack = [];
+        for (const textElement of line) {
+            const t = textElement.textContent
+            const prev = stack[stack.length - 1];
+            if (prev && intersect(prev, textElement)) {
+                prev.innerHTML = prev.innerHTML + textElement.textContent;
+                textElement.removeAttribute("selected");
+                textElement.removeAttribute("role");
+                textElement.style.zIndex = -100;
+            } else {
+                stack.push(textElement);
+            }
+        }
+
+        return stack;
     }
 
     // return the reason if a line can't be formatted

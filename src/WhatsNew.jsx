@@ -13,6 +13,10 @@ export default function WhatsNew() {
 
                     <ul className="timeline">
                         <li>
+                            <p><strong>26 April, 2025</strong></p>
+                            <p>Minor bug fixes for documents with overlapping text.</p>
+                        </li>
+                        <li>
                             <p><strong>22 April, 2025</strong></p>
                             <p>Support for password-protected PDFs.</p>
                         </li>
