@@ -1,3 +1,8 @@
+[![Build React app and deploy to Github Pages](https://github.com/hanwg/pdf-datatable/actions/workflows/react.yaml/badge.svg)](https://github.com/hanwg/pdf-datatable/actions/workflows/react.yaml)
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE.md)
+
+---
+
 # ![pdf-tables-logo.png](src/assets/pdf-datatable-logo.png) PDF DataTable
 
 PDF DataTable is a free tool for exporting PDFs to CSV.  
