@@ -88,7 +88,7 @@ export default function Home() {
                 <h4>Demo</h4>
                 <div>Convert a PDF statement of account to CSV within minutes!</div>
                 <div className="embed-responsive embed-responsive-16by9">
-                    <video className="embed-responsive-item" controls>
+                    <video className="embed-responsive-item border border-dark" loop="true" autoplay="autoplay" controls muted>
                         <source src={demo} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
