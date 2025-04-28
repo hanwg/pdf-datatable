@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import demo from './assets/demo.mp4';
+
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -24,7 +26,7 @@ export default function Home() {
                 <hr className="my-4 mt-5"/>
 
                 <div className="row justify-content-evenly">
-                    <div className="col-xs-12 col-sm-6 col-md-6">
+                    <div className="border rounded shadow p-3 m-3 col-xs-12 col-sm-6 col-md-6">
                         <div className="card-header">
                             <h5>✨ Powerful yet easy to use</h5>
                         </div>
@@ -33,7 +35,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="col-xs-12 col-sm-6 col-md-6">
+                    <div className="border rounded shadow p-3 m-3 col-xs-12 col-sm-6 col-md-6">
                         <div className="card-header">
                             <h5>🌐 Free and Open-Source Software (FOSS)</h5>
                         </div>
@@ -42,7 +44,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="col-xs-12 col-sm-6 col-md-6">
+                    <div className="border rounded shadow p-3 m-3 col-xs-12 col-sm-6 col-md-6">
                         <div className="card-header">
                             <h5>🛡️ Privacy and security</h5>
                         </div>
@@ -51,7 +53,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="col-xs-12 col-sm-6 col-md-6">
+                    <div className="border rounded shadow p-3 m-3 col-xs-12 col-sm-6 col-md-6">
                         <div className="card-header">
                             <h5>🔒 Works with password-protected PDFs</h5>
                         </div>
@@ -60,7 +62,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="col-xs-12 col-sm-6 col-md-6">
+                    <div className="border rounded shadow p-3 m-3 col-xs-12 col-sm-6 col-md-6">
                         <div className="card-header">
                             <h5>📃 No file size limits</h5>
                         </div>
@@ -69,7 +71,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="col-xs-12 col-sm-6 col-md-6">
+                    <div className="border rounded shadow p-3 m-3 col-xs-12 col-sm-6 col-md-6">
                         <div className="card-header">
                             <h5>⚡ No queues or wait times</h5>
                         </div>
@@ -77,6 +79,19 @@ export default function Home() {
                             <p>Enjoy a smooth and uninterrupted experience. No queues, no delays – just instant access whenever you need it.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <hr className="my-4 mt-5"/>
+
+            <div className="jumbotron text-center d-none d-lg-block mt-5">
+                <h4>Demo</h4>
+                <div>Convert a PDF statement of account to CSV within minutes!</div>
+                <div className="embed-responsive embed-responsive-16by9">
+                    <video className="embed-responsive-item" controls>
+                        <source src={demo} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
 
