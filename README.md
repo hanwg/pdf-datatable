@@ -5,8 +5,11 @@
 
 # ![pdf-tables-logo.png](src/assets/pdf-datatable-logo.png) PDF DataTable
 
-PDF DataTable is a free tool for exporting PDFs to CSV.  
+PDF DataTable is a free tool for exporting PDFs to CSV.
+
 **[Get Started](https://pdf-datatable.hanwg.top/)**
+
+[Demo](https://pdf-datatable.hanwg.top/#demo)
 
 [What's new?](https://pdf-datatable.hanwg.top/whats-new)
 

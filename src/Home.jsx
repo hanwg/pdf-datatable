@@ -85,7 +85,7 @@ export default function Home() {
             <hr className="my-4 mt-5"/>
 
             <div className="jumbotron text-center d-none d-lg-block mt-5">
-                <h4>Demo</h4>
+                <h4 id="demo">Demo</h4>
                 <div>Convert a PDF statement of account to CSV within minutes!</div>
                 <div className="embed-responsive embed-responsive-16by9">
                     <video className="embed-responsive-item border border-dark" loop="true" autoplay="autoplay" controls muted>
