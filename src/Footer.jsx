@@ -1,5 +1,3 @@
-import linkedinLogo from './assets/linkedin-logo.png';
-
 export default function Footer() {
     return (
         <>
