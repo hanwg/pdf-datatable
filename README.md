@@ -32,7 +32,6 @@ Get started worry-free.
 **Works with password-protected PDFs**
 
 Don't let locked PDFs stop you. PDF DataTable has built-in support for password-protected PDFs.
-Coming soon
 
 <br/>
 
